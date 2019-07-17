@@ -52,10 +52,10 @@ class User{
 		$sql = "SELECT * FROM users"; 
 		$result = $this->con->prepare($sql); 
 		$result->execute();
-		$user = $result->fetchAll();
+		$users = $result->fetchAll();
 		if( $result->rowCount() > 0 ){
 			$data = [
-				'user' => $user,
+				'users' => $users,
 				'message' => 'Listando Usuarios',
 				'error' => 'no'
 			];	
