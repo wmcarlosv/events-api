@@ -13,7 +13,7 @@
 		//Users Routers
 
 		$app->post('/login', function(Request $request, Response $response){
-			$data = $request->getQueryParams();
+			$data = json_decode($request->getQueryParams(), true);
 			$user_data = [];
 			$user_data['email'] = filter_var($data['email'], FILTER_SANITIZE_STRING);
 			$user_data['password'] = filter_var($data['password'], FILTER_SANITIZE_STRING);
