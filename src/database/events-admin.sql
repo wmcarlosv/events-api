@@ -1,7 +1,3 @@
-CREATE DATABASE events_admin;
-
-USE events_admin;
-
 CREATE TABLE users(
 	id int auto_increment,
 	name varchar(60) not null,
