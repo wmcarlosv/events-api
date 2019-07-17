@@ -18,7 +18,9 @@
 			$user_data['email'] = filter_var($data['email'], FILTER_SANITIZE_STRING);
 			$user_data['password'] = filter_var($data['password'], FILTER_SANITIZE_STRING);
 			$user = new User($this->db, $user_data);
-			return $response->withJson($user->login());
+			return $response->withJson($user->login())
+							->withHeader('Access-Control-Allow-Origin', '*')
+							->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
 		});
 		
 		$app->get('/users', function(Request $request, Response $response){
