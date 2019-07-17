@@ -9,17 +9,18 @@
 	    
 	});
 
-	$app->post('/login', function(Request $request, Response $response){
-		$data = $request->getQueryParams();
-		$user_data = [];
-		$user_data['email'] = filter_var($data['email'], FILTER_SANITIZE_STRING);
-		$user_data['password'] = filter_var($data['password'], FILTER_SANITIZE_STRING);
-		$user = new User($this->db, $user_data);
-		return $response->withJson($user->login());
-	});
-
 	$app->group('/api', function() use ($app){
 		//Users Routers
+
+		$app->post('/login', function(Request $request, Response $response){
+			$data = $request->getQueryParams();
+			$user_data = [];
+			$user_data['email'] = filter_var($data['email'], FILTER_SANITIZE_STRING);
+			$user_data['password'] = filter_var($data['password'], FILTER_SANITIZE_STRING);
+			$user = new User($this->db, $user_data);
+			return $response->withJson($user->login());
+		});
+		
 		$app->get('/users', function(Request $request, Response $response){
 			$user = new User($this->db, $user_data);
 			return $response->withJson($user->getAllUsers());
